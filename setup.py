@@ -59,7 +59,7 @@ ext_modules = [
         library_dirs=os.environ['LSST_LIBRARY_PATH'].split(":"),
         libraries=libraries,
     )
-    for i in range(3)
+    for i in range(20)
 ]
 
 # Need to modify LDFLAGS to remove -Wl,-dead_strip_dylibs
