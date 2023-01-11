@@ -18,45 +18,48 @@ __version__ = "0.0.1"
 #   reproducible builds (https://github.com/pybind/python_example/pull/53)
 
 
+libraries = [
+    # conda libs
+    "cfitsio",
+    "gsl",
+    "blas",
+    "Minuit2",
+    "log4cxx",
+    "boost_math_c99",
+    "ast",
+    "ast_pal",
+    "ast_cminpack",
+    "ast_grf_2.0.9",
+    "ast_grf_3.2.9",
+    "ast_grf_5.6.9",
+    "ast_grf3d",
+    "ast_err",
+    "yaml",
+    "fftw3f",
+    "fftw3",
+    # lsst libs
+    "meas_algorithms",
+    "meas_base",
+    "afw",
+    "log",
+    "daf_base",
+    "geom",
+    "sphgeom",
+    "cpputils",
+    "pex_exceptions",
+    "base",
+    "astshim",
+]
 
 ext_modules = [
-    Pybind11Extension("ventura_dlopen",
-                      ["ventura_dlopen/main.cpp"],
-                      define_macros=[('VERSION_INFO', __version__)],
-                      library_dirs=os.environ['LSST_LIBRARY_PATH'].split(":"),
-                      libraries=[
-                          # conda libs
-                          "cfitsio",
-                          "gsl",
-                          "blas",
-                          "Minuit2",
-                          "log4cxx",
-                          "boost_math_c99",
-                          "ast",
-                          "ast_pal",
-                          "ast_cminpack",
-                          "ast_grf_2.0.9",
-                          "ast_grf_3.2.9",
-                          "ast_grf_5.6.9",
-                          "ast_grf3d",
-                          "ast_err",
-                          "yaml",
-                          "fftw3f",
-                          "fftw3",
-                          # lsst libs
-                          "meas_algorithms",
-                          "meas_base",
-                          "afw",
-                          "log",
-                          "daf_base",
-                          "geom",
-                          "sphgeom",
-                          "cpputils",
-                          "pex_exceptions",
-                          "base",
-                          "astshim",
-                      ]
-                      ),
+    Pybind11Extension(
+        f"ventura_dlopen/_test{i}",
+        [f"ventura_dlopen/main{i}.cpp"],
+        define_macros=[('VERSION_INFO', __version__)],
+        library_dirs=os.environ['LSST_LIBRARY_PATH'].split(":"),
+        libraries=libraries,
+    )
+    for i in range(3)
 ]
 
 # Need to modify LDFLAGS to remove -Wl,-dead_strip_dylibs
