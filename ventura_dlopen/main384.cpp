@@ -9,7 +9,7 @@ int add(int i, int j) {
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(ventura_dlopen, m) {
+PYBIND11_MODULE(_test384, m) {
     m.doc() = R"pbdoc(
         Pybind11 example plugin
         -----------------------
