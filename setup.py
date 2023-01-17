@@ -56,10 +56,10 @@ ext_modules = [
         f"ventura_dlopen/_test{i}",
         [f"ventura_dlopen/main{i}.cpp"],
         define_macros=[('VERSION_INFO', __version__)],
-        library_dirs=os.environ['LSST_LIBRARY_PATH'].split(":"),
-        libraries=libraries,
+        # library_dirs=os.environ['LSST_LIBRARY_PATH'].split(":"),
+        # libraries=libraries,
     )
-    for i in range(20)
+    for i in range(50)
 ]
 
 # Need to modify LDFLAGS to remove -Wl,-dead_strip_dylibs
